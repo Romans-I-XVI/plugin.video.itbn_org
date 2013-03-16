@@ -1,0 +1,91 @@
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>xbmcplugin</strong></big></big> (version 1.3, 15 November 2005)</font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br>(built-in)</font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-addDirectoryItem"><strong>addDirectoryItem</strong></a>(...)</dt><dd><tt><a href="#-addDirectoryItem">addDirectoryItem</a>(handle,&nbsp;url,&nbsp;listitem&nbsp;[,isFolder])&nbsp;--&nbsp;Callback&nbsp;function&nbsp;to&nbsp;pass&nbsp;directory&nbsp;contents&nbsp;back&nbsp;to&nbsp;XBMC.<br>
+&nbsp;<br>
+handle&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Integer&nbsp;-&nbsp;handle&nbsp;the&nbsp;plugin&nbsp;was&nbsp;started&nbsp;with.<br>
+url&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;string&nbsp;-&nbsp;url&nbsp;of&nbsp;the&nbsp;entry.&nbsp;would&nbsp;be&nbsp;plugin://&nbsp;for&nbsp;another&nbsp;virtual&nbsp;directory<br>
+listitem&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;ListItem&nbsp;-&nbsp;item&nbsp;to&nbsp;add.<br>
+isFolder&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;[opt]&nbsp;bool&nbsp;-&nbsp;True=folder&nbsp;/&nbsp;False=not&nbsp;a&nbsp;folder(default).<br>
+&nbsp;<br>
+example:<br>
+&nbsp;&nbsp;-&nbsp;ok&nbsp;=&nbsp;xbmcplugin.<a href="#-addDirectoryItem">addDirectoryItem</a>(int(sys.argv[1]),&nbsp;'F:\\Trailers\\300.mov',&nbsp;listitem)<br>
+&nbsp;&nbsp;-&nbsp;if&nbsp;not&nbsp;ok:&nbsp;break</tt></dd></dl>
+ <dl><dt><a name="-addSortMethod"><strong>addSortMethod</strong></a>(...)</dt><dd><tt><a href="#-addSortMethod">addSortMethod</a>(handle,&nbsp;sortMethod)&nbsp;--&nbsp;Adds&nbsp;a&nbsp;sorting&nbsp;method&nbsp;for&nbsp;the&nbsp;media&nbsp;list.<br>
+&nbsp;<br>
+handle&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Integer&nbsp;-&nbsp;handle&nbsp;the&nbsp;plugin&nbsp;was&nbsp;started&nbsp;with.<br>
+sortMethod&nbsp;&nbsp;:&nbsp;Integer&nbsp;-&nbsp;Number&nbsp;for&nbsp;sortmethod&nbsp;see&nbsp;FileItem.h.<br>
+&nbsp;<br>
+example:<br>
+&nbsp;&nbsp;-&nbsp;xbmcplugin.<a href="#-addSortMethod">addSortMethod</a>(int(sys.argv[1]),&nbsp;17)</tt></dd></dl>
+ <dl><dt><a name="-endOfDirectory"><strong>endOfDirectory</strong></a>(...)</dt><dd><tt><a href="#-endOfDirectory">endOfDirectory</a>(handle[,&nbsp;succeeded])&nbsp;--&nbsp;Callback&nbsp;function&nbsp;to&nbsp;tell&nbsp;XBMC&nbsp;that&nbsp;the&nbsp;end&nbsp;of&nbsp;the&nbsp;directory&nbsp;listing&nbsp;in&nbsp;a&nbsp;virtualPythonFolder&nbsp;module&nbsp;is&nbsp;reached.<br>
+&nbsp;<br>
+handle&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Integer&nbsp;-&nbsp;handle&nbsp;the&nbsp;plugin&nbsp;was&nbsp;started&nbsp;with.<br>
+succeeded&nbsp;&nbsp;&nbsp;:&nbsp;[opt]&nbsp;bool&nbsp;-&nbsp;True=script&nbsp;completed&nbsp;successfully(Default)/False=Script&nbsp;did&nbsp;not.<br>
+&nbsp;<br>
+example:<br>
+&nbsp;&nbsp;-&nbsp;xbmcplugin.<a href="#-endOfDirectory">endOfDirectory</a>(int(sys.argv[1]))</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>SORT_METHOD_ALBUM</strong> = 13<br>
+<strong>SORT_METHOD_ALBUM_IGNORE_THE</strong> = 14<br>
+<strong>SORT_METHOD_ARTIST</strong> = 11<br>
+<strong>SORT_METHOD_ARTIST_IGNORE_THE</strong> = 12<br>
+<strong>SORT_METHOD_DATE</strong> = 3<br>
+<strong>SORT_METHOD_DRIVE_TYPE</strong> = 6<br>
+<strong>SORT_METHOD_DURATION</strong> = 8<br>
+<strong>SORT_METHOD_EPISODE</strong> = 20<br>
+<strong>SORT_METHOD_FILE</strong> = 5<br>
+<strong>SORT_METHOD_GENRE</strong> = 15<br>
+<strong>SORT_METHOD_LABEL</strong> = 1<br>
+<strong>SORT_METHOD_LABEL_IGNORE_THE</strong> = 2<br>
+<strong>SORT_METHOD_MPAA_RATING</strong> = 24<br>
+<strong>SORT_METHOD_NONE</strong> = 0<br>
+<strong>SORT_METHOD_PLAYLIST_ORDER</strong> = 19<br>
+<strong>SORT_METHOD_PRODUCTIONCODE</strong> = 22<br>
+<strong>SORT_METHOD_PROGRAM_COUNT</strong> = 18<br>
+<strong>SORT_METHOD_SIZE</strong> = 4<br>
+<strong>SORT_METHOD_SONG_RATING</strong> = 23<br>
+<strong>SORT_METHOD_TITLE</strong> = 9<br>
+<strong>SORT_METHOD_TITLE_IGNORE_THE</strong> = 10<br>
+<strong>SORT_METHOD_TRACKNUM</strong> = 7<br>
+<strong>SORT_METHOD_UNSORTED</strong> = 25<br>
+<strong>SORT_METHOD_VIDEO_RATING</strong> = 17<br>
+<strong>SORT_METHOD_VIDEO_TITLE</strong> = 21<br>
+<strong>SORT_METHOD_VIDEO_YEAR</strong> = 16<br>
+<strong>__author__</strong> = 'J. Mulder &lt;darkie@xboxmediacenter.com&gt;'<br>
+<strong>__credits__</strong> = 'XBMC TEAM.'<br>
+<strong>__date__</strong> = '15 November 2005'<br>
+<strong>__platform__</strong> = 'XBOX'<br>
+<strong>__version__</strong> = '1.3'</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#7799ee">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Author</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#7799ee"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">J.&nbsp;Mulder&nbsp;&lt;darkie@xboxmediacenter.com&gt;</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#7799ee">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Credits</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#7799ee"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">XBMC&nbsp;TEAM.</td></tr></table>
