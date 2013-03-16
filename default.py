@@ -135,10 +135,11 @@ def PROGRAMS(url):
         match=re.compile('									<a href="(.+?)">(.+?)</a>').findall(link)
         xbmc.executebuiltin('Container.SetViewMode(50)')
         for url,name in match:
-                name = name.replace("&hellip;","...")
-                name = name.replace("&#039;","\'")
-		name = name.replace("&amp;","&")
-                addDir(name,'http://www.itbn.org'+url,1,'')
+                if url != '#\" class=\"btn_top':
+                        name = name.replace("&hellip;","...")
+                        name = name.replace("&#039;","\'")
+                        name = name.replace("&amp;","&")
+                        addDir(name,'http://www.itbn.org'+url,1,'')
 
 def RECENT(url):
         req = urllib2.Request(url)
