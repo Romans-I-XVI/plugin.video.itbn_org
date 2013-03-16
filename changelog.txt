@@ -1,0 +1,2 @@
+Version 1.1.4
+-fixed addon description
