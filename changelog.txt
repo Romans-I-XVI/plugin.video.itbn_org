@@ -1,2 +1,3 @@
 Version 1.1.4
 -fixed addon description
+-fixed minor bug in listing Programs
