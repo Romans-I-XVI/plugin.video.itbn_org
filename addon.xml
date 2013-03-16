@@ -12,8 +12,9 @@
         <provides>video</provides>
     </extension>
     <extension point="xbmc.addon.metadata">
-        <summary>XBMC iTBN Viewer</summary>
-        <description>iTBN gives access to thousands of hours worth of videos that have aired on TBN, The Church Channel, JC-TV, Smile of a Child, and more.[CR][CR]This addon gives the ability to view videos from iTBN.org and also provides live streams of TBN's 12 television networks.</description>
+        <language />
+        <summary lang="en">XBMC iTBN Viewer</summary>
+        <description lang="en">iTBN gives access to thousands of hours worth of videos that have aired on TBN, The Church Channel, JC-TV, Smile of a Child, and more.[CR][CR]This addon gives the ability to view videos from iTBN.org and also provides live streams of TBN's 12 television networks.</description>
         <platform>all</platform>
     </extension>
 </addon>
