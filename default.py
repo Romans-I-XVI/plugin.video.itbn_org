@@ -9,7 +9,6 @@ live_thumb = os.path.join( settings.getAddonInfo( 'path' ), 'resources', 'media'
 movies_thumb = os.path.join( settings.getAddonInfo( 'path' ), 'resources', 'media', 'movies.png' )
 
 def MAIN():
-        xbmc.executebuiltin('Container.SetViewMode(50)')
         addDir('Recent','http://www.tbn.org/watch/mobile_app/v3/itbnapi.php?platform=android&request_path=%2Fapi%2Fv1.0%2Fvideos%2Flimit%2F250%2Fsortby%2Fairdate&device_name=GT-I9100&os_ver=2.3.4&screen_width=1600&screen_height=900&app_ver=3.0&UUID=1d5f5000-656a-4a16-847f-138937d4d0c4',6,'')
         addDir('Categories','http://www.itbn.org',3,'')
         addDir('Programs','http://www.itbn.org/programs',5,'')
@@ -17,6 +16,8 @@ def MAIN():
         addDir('Live','http://www.tbn.org/watch/mobile_app/v3/getlivestreams.php?device_name=GT-I9100&os_ver=2.3.4&screen_width=1600&screen_height=900&app_ver=3.0&UUID=1d5f5000-656a-4a16-847f-138937d4d0c4',7,live_thumb)
         addDir('Search','http://itbn.org/',8,search_thumb)
 	addDir('Air Date','http://itbn.org/',9,search_thumb)
+	if 1==1:
+                xbmc.executebuiltin('Container.SetViewMode(50)')
 def ADDLINKS(url):
         req = urllib2.Request(url)
         req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3')
@@ -62,7 +63,6 @@ def ADDLINKS(url):
                 previouspagelabel=''.join(str(e) for e in previouspagelabel)
         source=zip((prefix),(match),(suffix))
         mylist=zip((source),(name),(thumbnail),(description))
-        xbmc.executebuiltin('Container.SetViewMode(500)')
         addDir('Main Menu','',None,main_menu_thumb)
         if previouspage:
                 addDir('Page '+previouspagelabel,'http://www.itbn.org'+previouspage[0],1,previous_thumb)
@@ -71,10 +71,17 @@ def ADDLINKS(url):
                 description=description.replace("&#039;","\'")
                 description=description.replace("&hellip;","...")
                 description=description.replace("&amp;","&")
-                addDir(reduce(lambda rst, d: rst * 1 + d, (name))+' - '+description,reduce(lambda rst, d: rst * 1 + d, (url)),2,thumbnail)
+                name=reduce(lambda rst, d: rst * 1 + d, (name))
+                name=name.replace("&quot;","\"")
+                name=name.replace("&#039;","\'")
+                name=name.replace("&hellip;","...")
+                name=name.replace("&amp;","&")
+                addDir(name+' - '+description,reduce(lambda rst, d: rst * 1 + d, (url)),2,thumbnail)
         if nextpage:
                 addDir('Page '+nextpagelabel,'http://www.itbn.org'+nextpage[0],1,next_thumb)
-        xbmc.executebuiltin('Container.SetViewMode(500)')
+        video_view = settings.getSetting("list_view") == "1"
+        if 1==1:
+            xbmc.executebuiltin("Container.SetViewMode(500)")
         
 def GETSOURCE(url,name):
         req = urllib2.Request(url)
@@ -84,13 +91,13 @@ def GETSOURCE(url,name):
         response.close()
         match=re.compile('"is_source":true,"file_size":.+?,"audio_codec":".+?","video_codec":".+?","average_video_bitrate":.+?,"stream_type":"single","url":"(.+?)"').findall(link)
         match = [w.replace('\\', '') for w in match]
-        xbmc.executebuiltin('Container.SetViewMode(50)')
         for url in match:
                 addLink('Play Video',url,'')
+        if 1==1:
+                xbmc.executebuiltin('Container.SetViewMode(50)')
         
 
 def CATEGORIES(url):
-        xbmc.executebuiltin('Container.SetViewMode(50)')
         addDir('Faith Issues','http://www.tbn.org/watch/mobile_app/v3/itbnapi.php',4,'')
         addDir('Classics','http://www.itbn.org/index/subview/lib/Programs/sublib/Classics',1,'')
         addDir('Educational','http://www.itbn.org/index/subview/lib/Programs/sublib/Educational',1,'')
@@ -103,10 +110,10 @@ def CATEGORIES(url):
         addDir('Family & Variety','http://www.itbn.org/index/subview/lib/Programs/sublib/Family+%26+Variety',1,'')
         addDir('Holidays','http://www.itbn.org/index/subview/lib/Programs/sublib/Holidays',1,'')
         addDir('Reality','http://www.itbn.org/index/subview/lib/Programs/sublib/Holidays',1,'')
-        
+        if 1==1:
+                xbmc.executebuiltin('Container.SetViewMode(50)')
 
 def FAITHISSUES(url):
-        xbmc.executebuiltin('Container.SetViewMode(50)')
         addDir('Angels','http://www.itbn.org/index/subview/lib/Faith+Issues/sublib/Angels',1,'')
         addDir('Crisis','http://www.itbn.org/index/subview/lib/Faith+Issues/sublib/Crisis',1,'')
         addDir('Depression','http://www.itbn.org/index/subview/lib/Faith+Issues/sublib/Depression',1,'')
@@ -125,7 +132,8 @@ def FAITHISSUES(url):
         addDir('Sexuality','http://www.itbn.org/index/subview/lib/Faith+Issues/sublib/Sexuality',1,'')
         addDir('Suicide','http://www.itbn.org/index/subview/lib/Faith+Issues/sublib/Suicide',1,'')
         addDir('Teen Issues','http://www.itbn.org/index/subview/lib/Faith+Issues/sublib/Teen+Issues',1,'')
-
+        if 1==1:
+                xbmc.executebuiltin('Container.SetViewMode(50)')
 def PROGRAMS(url):
         req = urllib2.Request(url)
         req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3')
@@ -133,13 +141,14 @@ def PROGRAMS(url):
         link=response.read()
         response.close()
         match=re.compile('									<a href="(.+?)">(.+?)</a>').findall(link)
-        xbmc.executebuiltin('Container.SetViewMode(50)')
         for url,name in match:
                 if url != '#\" class=\"btn_top':
                         name = name.replace("&hellip;","...")
                         name = name.replace("&#039;","\'")
                         name = name.replace("&amp;","&")
                         addDir(name,'http://www.itbn.org'+url,1,'')
+        if 1==1:
+                xbmc.executebuiltin('Container.SetViewMode(50)')
 
 def RECENT(url):
         req = urllib2.Request(url)
@@ -163,12 +172,13 @@ def RECENT(url):
         suffix=[suffixcode[0]]*suffixcode[1]
         source=zip((prefix),(match),(suffix))
         mylist=zip((source),(name),(thumbnail),(description))
-        xbmc.executebuiltin('Container.SetViewMode(50)')
         for url,name,thumbnail,description in mylist:
                 description=description.replace("\\","")
                 description=description.replace("u2019","\'")
                 addDir(reduce(lambda rst, d: rst * 1 + d, (name)),reduce(lambda rst, d: rst * 1 + d, (url)),2,thumbnail)
-
+        if 1==1:
+                xbmc.executebuiltin('Container.SetViewMode(50)')
+                
 def LIVE(url):
         req = urllib2.Request(url)
         req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3')
@@ -179,9 +189,10 @@ def LIVE(url):
         title=re.compile('\"name\":\"(.+?)\"').findall(link)
         thumbnail=re.compile('\"icon\":\"(.+?)\"').findall(link)
         mylist=zip((match),(title),(thumbnail))
-        xbmc.executebuiltin('Container.SetViewMode(500)')
         for url,name,thumbnail in mylist:
                 addLink(name,url,thumbnail)
+        if 1==1:
+                xbmc.executebuiltin('Container.SetViewMode(500)')
 
 def SEARCH(url):
         keyboard = xbmc.Keyboard('', '')
@@ -228,7 +239,6 @@ def SEARCH(url):
                         previouspagelabel=''.join(str(e) for e in previouspagelabel)
                 source=zip((prefix),(match),(suffix))
                 mylist=zip((source),(name),(thumbnail),(description))
-                xbmc.executebuiltin('Container.SetViewMode(500)')
                 addDir('Main Menu','',None,main_menu_thumb)
                 if previouspage:
                         addDir('Page '+previouspagelabel,'http://www.itbn.org'+previouspage[0],1,next_thumb)
@@ -237,10 +247,16 @@ def SEARCH(url):
                         description=description.replace("&#039;","\'")
                         description=description.replace("&hellip;","...")
                         description=description.replace("&amp;","&")
-                        addDir(reduce(lambda rst, d: rst * 1 + d, (name))+' - '+description,reduce(lambda rst, d: rst * 1 + d, (url)),2,thumbnail)
+                        name=reduce(lambda rst, d: rst * 1 + d, (name))
+                        name=name.replace("&quot;","\"")
+                        name=name.replace("&#039;","\'")
+                        name=name.replace("&hellip;","...")
+                        name=name.replace("&amp;","&")
+                        addDir(name+' - '+description,reduce(lambda rst, d: rst * 1 + d, (url)),2,thumbnail)
                 if nextpage:
                         addDir('Page '+nextpagelabel,'http://www.itbn.org'+nextpage[0],1,next_thumb)
-                xbmc.executebuiltin('Container.SetViewMode(500)')
+                if 1==1:
+                        xbmc.executebuiltin('Container.SetViewMode(500)')
         else:
                 MAIN()
 
@@ -299,10 +315,16 @@ def AIRDATE(url):
                         description=description.replace("&#039;","\'")
                         description=description.replace("&hellip;","...")
                         description=description.replace("&amp;","&")
-                        addDir(reduce(lambda rst, d: rst * 1 + d, (name))+' - '+description,reduce(lambda rst, d: rst * 1 + d, (url)),2,thumbnail)
+                        name=reduce(lambda rst, d: rst * 1 + d, (name))
+                        name=name.replace("&quot;","\"")
+                        name=name.replace("&#039;","\'")
+                        name=name.replace("&hellip;","...")
+                        name=name.replace("&amp;","&")
+                        addDir(name+' - '+description,reduce(lambda rst, d: rst * 1 + d, (url)),2,thumbnail)
                 if nextpage:
                         addDir('Page '+nextpagelabel,'http://www.itbn.org'+nextpage[0],1,next_thumb)
-                xbmc.executebuiltin('Container.SetViewMode(500)')
+                if 1==1:
+                        xbmc.executebuiltin('Container.SetViewMode(500)')
         else:
                 MAIN()
 
@@ -328,12 +350,12 @@ def MOVIES(url):
         suffix=[suffixcode[0]]*suffixcode[1]
         source=zip((prefix),(match),(suffix))
         mylist=zip((source),(name),(thumbnail),(description))
-        xbmc.executebuiltin('Container.SetViewMode(500)')
         for url,name,thumbnail,description in mylist:
                 description=description.replace("\\","")
                 description=description.replace("u2019","\'")
                 addDir(reduce(lambda rst, d: rst * 1 + d, (name))+' - '+description,reduce(lambda rst, d: rst * 1 + d, (url)),2,thumbnail)
-        
+        if 1==1:
+                xbmc.executebuiltin('Container.SetViewMode(500)')
                
 def get_params():
         param=[]
