@@ -76,7 +76,8 @@ def ADDLINKS(url):
                 name=name.replace("&#039;","\'")
                 name=name.replace("&hellip;","...")
                 name=name.replace("&amp;","&")
-                addDir(name+' - '+description,reduce(lambda rst, d: rst * 1 + d, (url)),2,thumbnail)
+                url=reduce(lambda rst, d: rst * 1 + d, (url))
+                addDir(name+' - '+description,url,2,thumbnail)
         if nextpage:
                 addDir('Page '+nextpagelabel,'http://www.itbn.org'+nextpage[0],1,next_thumb)
         video_view = settings.getSetting("list_view") == "1"
@@ -252,7 +253,8 @@ def SEARCH(url):
                         name=name.replace("&#039;","\'")
                         name=name.replace("&hellip;","...")
                         name=name.replace("&amp;","&")
-                        addDir(name+' - '+description,reduce(lambda rst, d: rst * 1 + d, (url)),2,thumbnail)
+                        url=reduce(lambda rst, d: rst * 1 + d, (url))
+                        addDir(name+' - '+description,url,2,thumbnail)
                 if nextpage:
                         addDir('Page '+nextpagelabel,'http://www.itbn.org'+nextpage[0],1,next_thumb)
                 if 1==1:
@@ -320,7 +322,8 @@ def AIRDATE(url):
                         name=name.replace("&#039;","\'")
                         name=name.replace("&hellip;","...")
                         name=name.replace("&amp;","&")
-                        addDir(name+' - '+description,reduce(lambda rst, d: rst * 1 + d, (url)),2,thumbnail)
+                        url=reduce(lambda rst, d: rst * 1 + d, (url))
+                        addDir(name+' - '+description,url,2,thumbnail)
                 if nextpage:
                         addDir('Page '+nextpagelabel,'http://www.itbn.org'+nextpage[0],1,next_thumb)
                 if 1==1:
