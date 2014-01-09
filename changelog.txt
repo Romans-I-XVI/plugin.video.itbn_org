@@ -26,3 +26,6 @@ Version 1.2.3
 
 Version 1.2.4
 -Changed the way the title of videos are formated.
+
+Version 1.2.5
+-Removed "Live" quality settings. Low quality streams have been discontinued.
