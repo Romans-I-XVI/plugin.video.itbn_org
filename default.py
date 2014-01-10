@@ -448,55 +448,55 @@ try:
 except:
         pass
 
-print "Mode: "+str(mode)
-print "URL: "+str(url)
-print "Name: "+str(name)
+xbmc.log( "Mode: "+str(mode))
+xbmc.log( "URL: "+str(url))
+xbmc.log( "Name: "+str(name))
 
 if mode==None or url==None or len(url)<1:
-        print ""
+        xbmc.log( "")
         MAIN()
        
 elif mode==1:
-        print ""+url
+        xbmc.log( ""+url)
         ADDLINKS(url)
         
 elif mode==2:
-        print ""+url
+        xbmc.log( ""+url)
         GETSOURCE(url,name)
 
 elif mode==3:
-        print ""+url
+        xbmc.log( ""+url)
         CATEGORIES(url)
 
 elif mode==4:
-        print ""+url
+        xbmc.log( ""+url)
         FAITHISSUES(url)
 
 elif mode==5:
-        print ""+url
+        xbmc.log( ""+url)
         PROGRAMS(url)
 
 elif mode==6:
-        print ""+url
+        xbmc.log( ""+url)
         RECENT(url)
 
 elif mode==7:
-        print ""+url
+        xbmc.log( ""+url)
         LIVE(url)
 
 elif mode==8:
-        print ""+url
+        xbmc.log( ""+url)
         SEARCH(url)
 
 elif mode==9:
-        print ""+url
+        xbmc.log( ""+url)
         AIRDATE(url)
 
 elif mode==10:
-        print ""+url
+        xbmc.log( ""+url)
         MOVIES(url)
 elif mode==11:
-        print ""+url
+        xbmc.log( ""+url)
         PREVIOUS()
 
 xbmcplugin.endOfDirectory(int(sys.argv[1]))
