@@ -226,7 +226,7 @@ def LIVE(url):
 ##################################################################################################################################
 
 def SEARCH(url):
-        keyboard = xbmc.Keyboard('', '')
+        keyboard = xbmc.Keyboard('', 'Search By Title')
         keyboard.doModal()
         if keyboard.isConfirmed() and keyboard.getText():
                 search_string = keyboard.getText().replace(" ","+")
@@ -285,15 +285,15 @@ def SEARCH(url):
 			if 1==1:
 				xbmc.executebuiltin('Container.SetViewMode(50)')
         else:
-                MAIN()
+                PREVIOUS()
 
 ##################################################################################################################################
 
 def AIRDATE(url):
-        keyboard = xbmc.Keyboard('yyyy-mm-dd', '')
-        keyboard.doModal()
-        if keyboard.isConfirmed() and keyboard.getText():
-                search_string = keyboard.getText().replace(" ","+")
+	dialog = xbmcgui.Dialog()
+        numpad = dialog.numeric(1, 'Search By Air Date')
+        if numpad:
+		search_string=numpad.replace(' ','')
                 content = 'http://www.itbn.org/search?airDate='+search_string
                 req = urllib2.Request(content)
                 req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3')
@@ -349,7 +349,7 @@ def AIRDATE(url):
 			if 1==1:
 				xbmc.executebuiltin('Container.SetViewMode(50)')
         else:
-                MAIN()
+                PREVIOUS()
 
 
 ##################################################################################################################################
